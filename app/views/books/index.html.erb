@@ -1,42 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h2 class="mt-3">User info</h2>
-      <% @users.each do |user| %>
-      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-      <table class="table">
-        <tr>
-          <th scope="col">name</th>
-          <th scope="col"><%= user.name %></th>
-        </tr>
-        <tr>
-          <th scope="col">introduction</th>
-          <th scope="col"><%= user.introduction %></th>
-        </tr>
-      </table>
-      <% end %>
-      <div class="row">
-        <% if current_user.id %>
-          <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block btn-sm" do %>
-          <i class="fas fa-user-cog"></i>
-          <% end %>
-        <% end %>
-        <h2 class="mt-3">New book</h2>
-      </div>
-        <%= form_with model: @book, local:true do |f| %>
-        <div class="form-group">
-          <label for="InputName">Title</label>
-          <%= f.text_field :title, class:"form-control", id:"InputName" %>
-        </div>
-        <div class="form-group">
-          <label for="InputBody">Opinion</label>
-          <%= f.text_area :body, class:"form-control", id:"InputBody" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Create Book', class:"btn btn-success" %>
-        </div>
-        <% end %>
-    </div>
+    <%= render 'books/list', users: @users, book: @book %>
     <div class="col-md-8 offset-md-1">
       <h2 class="mt-3">Books</h2>
       <table class="table">
@@ -51,9 +15,7 @@
           <% @books.each do |book| %>
           <tr>
             <td>
-              <%= link_to user_path(1) do %>
               <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg"%>
-              <% end %>
             </td>
             <td>
               <%= link_to book_path(book.id) do %>
