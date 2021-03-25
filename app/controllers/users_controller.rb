@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @user = User.find_by(params[:id])
+    @user = current_user
     @book = Book.new
   end
 

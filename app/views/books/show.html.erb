@@ -6,27 +6,29 @@
       <table class="table">
         <tbody>
           <tr>
-            <td>
-              <%= link_to user_path(@user) do %>
-                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg"%>
+            <td style="width:10%">
+              <%= link_to user_path(@bookid.user.id) do %>
+                <%= attachment_image_tag @bookid.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: "40x40" %>
                 <br />
-                <%= @user.name %>
+                <%= @bookid.user.name %>
               <% end %>
             </td>
-            <td>
+            <td style="width:30%">
               <%= link_to book_path(@bookid) do %>
               <%= @bookid.title %>
               <% end %>
             </td>
-            <td>
+            <td style="width:60%">
               <%= @bookid.body %>
             </td>
+            <% if @bookid.user.id == current_user.id %>
             <td>
               <%= link_to "Edit", edit_book_path(@bookid), class:"btn btn-success btn-sm" %>
             </td>
             <td>
               <%= link_to "Destroy", book_path(@bookid), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger btn-sm" %>
             </td>
+            <% end %>
           </tr>
         </tbody>
       </table>
