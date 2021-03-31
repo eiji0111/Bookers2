@@ -15,9 +15,9 @@
       <%= link_to edit_user_path(user.id), class:"btn btn-outline-secondary btn-block btn-sm" do %>
       <i class="fas fa-user-cog"></i>
       <% end %>
-    <h2 class="mt-3">New book</h2>
   </div>
-    <%= form_with model: book, local:true do |f| %>
+  <h2 class="mt-3">New book</h2>
+  <%= form_with model: book, local:true do |f| %>
     <div class="form-group">
       <label for="InputName">Title</label>
       <%= f.text_field :title, class:"form-control", id:"InputName" %>
@@ -29,5 +29,5 @@
     <div class="form-group">
       <%= f.submit 'Create Book', class:"btn btn-success" %>
     </div>
-    <% end %>
+  <% end %>
 </div>
